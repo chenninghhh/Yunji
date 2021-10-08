@@ -8,7 +8,7 @@ resource "alicloud_security_group" "group" {
 }
 
 resource "alicloud_vpc" "vpc" {
-  name       = var.name
+  name       = "test_vpc"
   cidr_block = "172.16.0.0/16"
 }
 
