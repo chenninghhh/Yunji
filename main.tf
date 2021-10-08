@@ -16,16 +16,16 @@ resource "alicloud_vswitch" "vswitch" {
   vpc_id            = alicloud_vpc.vpc.id
   cidr_block        = "172.16.0.0/24"
   vswitch_name      = "test_vpc"
-  availability_zone = "cn-hangzhou-b"
+  availability_zone = "cn-beijing-b"
 }
 
 resource "alicloud_instance" "instance" {
   # cn-beijing
-  availability_zone = "cn-hangzhou-b"
+  availability_zone = "cn-beijing-b"
   security_groups   = alicloud_security_group.group.*.id
 
   # series III
-  instance_type              = "ecs.n4.small"
+  instance_type              = "ecs.n2.small"
   image_id                   = "ubuntu_18_04_64_20G_alibase_20190624.vhd"
   instance_name              = "test_foo"  
   vswitch_id                 = alicloud_vswitch.vswitch.id
