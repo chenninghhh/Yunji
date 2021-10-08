@@ -16,6 +16,7 @@ resource "alicloud_vswitch" "vswitch" {
   vpc_id            = alicloud_vpc.vpc.id
   cidr_block        = "172.16.0.0/24"
   vswitch_name      = "test_vpc"
+  availability_zone = "cn-beijing-b"
 }
 
 resource "alicloud_instance" "instance" {
