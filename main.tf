@@ -12,6 +12,13 @@ resource "alicloud_vpc" "vpc" {
   cidr_block = "172.16.0.0/16"
 }
 
+resource "alicloud_vswitch" "vswitch" {
+  vpc_id            = alicloud_vpc.vpc.id
+  cidr_block        = "172.16.0.0/24"
+  zone_id           = data.alicloud_zones.default.zones[0].id
+  vswitch_name      = "test_vpc"
+}
+
 resource "alicloud_instance" "instance" {
   # cn-beijing
   availability_zone = "cn-beijing-b"
@@ -21,4 +28,6 @@ resource "alicloud_instance" "instance" {
   instance_type              = "ecs.n4.small"
   image_id                   = "ubuntu_18_04_64_20G_alibase_20190624.vhd"
   instance_name              = "test_foo"  
+  vswitch_id                 = alicloud_vswitch.vswitch.id
+  internet_max_bandwidth_out = 10
 }
